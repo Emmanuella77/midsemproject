@@ -1,3 +1,5 @@
+// I have made some changes
+
 #include <Arduino.h>
 #include "DHT.h"
 
