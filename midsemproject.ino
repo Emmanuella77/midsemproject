@@ -55,11 +55,11 @@ float distance = readdistance();
  lcd.setCursor(4,1);   //Move cursor to character 2 on line 1
  lcd.print(distance);
  
- database("http://172.20.10.12/IOT_php/Iotproject.php?insert&Water_level="+String(distance)+"&TankID=1&Water_Status="+String(humidity));
+ database("http://172.20.10.12/IOT_php/Iotproject.php?insert&Water_level="+String(distance)+"&TankID=1");
 
- delay(1000);
+ delay(100);
  lcd.clear();
- if (distance <= 5){
+ if (distance >=0 and distance <= 20 ){
   led_on();
   
   }
@@ -67,10 +67,7 @@ else{
     led_off();
     }
 }
-//funtion for status
-//void stattt(){}
-//float distance = readdistance();
-//if 
+
 //fucntion to read distance
 float readdistance(){
   digitalWrite(trig,  LOW);
