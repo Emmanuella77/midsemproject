@@ -12,6 +12,9 @@ const int ledPin = 4;
 
 void setup() {
   // put your setup code here, to run once:
+  lcd.init();
+  lcd.clear();         
+  lcd.backlight();
   
   Serial.begin(115200);
  pinMode(trig , OUTPUT);
@@ -21,10 +24,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+ lcd.setCursor(0,0);   //Set cursor to character 2 on line 0
+ lcd.print("Tank Level(cm)");
 float distance = readdistance();
  Serial.print(distance);
  Serial.println("cm");
+
+ lcd.setCursor(4,1);   //Move cursor to character 2 on line 1
+ lcd.print(distance);
+ 
  delay(1000);
+ lcd.clear();
  if (distance <= 5){
   led_on();
   }
