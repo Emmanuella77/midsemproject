@@ -10,7 +10,7 @@
 LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
 
 #define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  60        /* Time ESP32 will go to sleep (in seconds) */
+#define TIME_TO_SLEEP  20        /* Time ESP32 will go to sleep (in seconds) */
 
 
 
@@ -105,6 +105,7 @@ else{
     led_off();
     }
 Serial.println("Going to sleep now");
+lcd.noBacklight();
   Serial.flush(); 
   esp_deep_sleep_start();
   Serial.println("This will never be printed");
