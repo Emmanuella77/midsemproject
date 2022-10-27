@@ -1,7 +1,7 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "No";
+    $password = "";
     $dbname = "iotproject";
 
 
