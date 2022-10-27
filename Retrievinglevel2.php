@@ -12,14 +12,14 @@
    $sql = "SELECT * FROM (
     SELECT * 
     FROM tankmonitor 
-    WHERE (Tank_ID = 2)  ORDER BY ID DESC LIMIT 5
+    WHERE (TankID = 2)  ORDER BY ID DESC LIMIT 5
   ) AS `table` ORDER by ID ASC";
 
 //check what ID is 
 
    if ($q=mysqli_query($con, $sql)) {
     while ($row = $q->fetch_assoc()){
-        echo "{$row['Water_level']}  {$row['Timerecorded']} \n". "<br/>";
+        echo "{$row['Water_level']}  {$row['Timerecorded']} \n";
     }
    } 
    
