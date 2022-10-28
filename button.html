@@ -1,0 +1,95 @@
+<!-- HTML !-->
+<!DOCTYPE html>
+<HTML>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>Tank Monitor</title>
+  <style>
+
+ 
+
+
+  
+    </style></head>
+</head>
+<body>
+
+    <h1 style="color: rgb(14, 67, 62);">Monitoring Storage Tank Level</h1>
+  <h1 text-align= "center"> </h1>
+  <p style="font-size: 120%;">This page shows the storage tanks in Ella and Ella Fosu's Houses. 
+    Click any of the tanks to display last 5 water levels.</p>
+
+
+
+
+
+  <body>
+
+    <!-- <button type="button" onclick="updateByAJAX_tankdbData()">Tank1</button> -->
+ 
+
+<button class="button-1" role="button" name = "Tank" onclick= "updateByAJAX_tankdbData()"> Tank 1</button>
+<div id="tankdbData" ></div>
+
+
+<br>
+<br>
+ 
+
+<button class="button-2" role="button" name = "Tank" onclick= "updateByAJAX_level2()">Tank 2</button>
+<div id="level2" ></div> 
+
+
+<br>
+<br>
+
+
+<script type="text/javascript">
+
+function updateByAJAX_tankdbData(){
+      const xhttp=new XMLHttpRequest();
+      xhttp.onload=function(){
+        document.getElementById("tankdbData").innerText=this.responseText;
+      }
+      
+      xhttp.open("GET", "http://localhost/IOTLab5/Retrievinglevel1.php?");
+      xhttp.send();
+    }
+
+</script>
+
+
+
+// Ei Dr Nathan
+
+
+<script type="text/javascript">
+
+    function updateByAJAX_tankdbData(){
+          const xhttp=new XMLHttpRequest();
+          xhttp.onload=function(){
+            document.getElementById("tankdbData").innerText=this.responseText;
+          }
+          
+          xhttp.open("GET", "http://localhost/IOTLab5/Retrievinglevel.php?");
+          xhttp.send();
+        }
+    
+  
+    
+    function updateByAJAX_level2(){
+        const xhttp=new XMLHttpRequest();
+        xhttp.onload=function(){
+            document.getElementById("level2").innerText=this.responseText;
+          }
+          
+          xhttp.open("GET", "http://localhost/IOTLab5/Retrievinglevel2.php?");
+          xhttp.send();
+        }
+    
+
+    
+    </script>
+
+</body>
+</HTML>
