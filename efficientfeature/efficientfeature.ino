@@ -10,7 +10,7 @@
 LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
 
 #define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
-#define TIME_TO_SLEEP  20        /* Time ESP32 will go to sleep (in seconds) */
+#define TIME_TO_SLEEP  10        /* Time ESP32 will go to sleep (in seconds) */
 
 
 
@@ -66,6 +66,7 @@ void setup() {
  pinMode(trig , OUTPUT);
  pinMode(echo , INPUT);
  pinMode (ledPin, OUTPUT);
+ pinMode(relay, OUTPUT);
 
   ++bootCount;
   Serial.println("Boot number: " + String(bootCount));
@@ -85,27 +86,31 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
  lcd.setCursor(0,0);   //Set cursor to character 2 on line 0
  lcd.print("Tank Level(cm)");
 float distance = readdistance();
+if (distance <= 20 ){
+  led_on();
+  digitalWrite(relay, LOW);
+  }
+else{
+    led_off();
+   digitalWrite(relay, HIGH);
+    }
+ 
  Serial.print(distance);
  Serial.println("cm");
 
  lcd.setCursor(4,1);   //Move cursor to character 2 on line 1
  lcd.print(distance);
  
+ 
  database("http://172.20.10.12/IOT_php/Iotproject.php?insert&Water_level="+String(distance)+"&TankID=1");
 
  delay(100);
  lcd.clear();
- if (distance >=0 and distance <= 20 ){
-  led_on();
-  relay_on();
-  }
-else{
-    led_off();
-    relay_off();
-    }
+ 
 Serial.println("Going to sleep now");
 lcd.noBacklight();
   Serial.flush(); 
@@ -126,21 +131,20 @@ return (soundSpeed * echoTime)/2 ;
 }
 //function for led
 void led_on(){
-  
   digitalWrite (ledPin, HIGH);
   }
   void led_off(){
   digitalWrite (ledPin, LOW);
-  digitalWrite(relay, HIGH);
+  //digitalWrite(relay, HIGH);
   }
-  void relay_on(){
-    digitalWrite(relay, LOW);
-    
-    }
-     void relay_off(){
-    digitalWrite(relay, HIGH);
-    
-    }
+//  void relay_on(){
+//    digitalWrite(relay, LOW);
+//    }
+//    
+//     void relay_off(){
+//    digitalWrite(relay, HIGH);
+//    
+//    }
 
   //function for inserting into database
 void database(String y){
