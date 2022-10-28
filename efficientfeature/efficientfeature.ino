@@ -17,7 +17,8 @@ LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x3F for a 16 chars
 WiFiMulti wifiMulti;
 const int trig = 5;
 const int echo = 18;
-const int ledPin = 4;
+const int ledPin = 2;
+const int relay=4;
 
 //define sound speed in cm/uS
 #define soundSpeed 0.034
@@ -99,10 +100,11 @@ float distance = readdistance();
  lcd.clear();
  if (distance >=0 and distance <= 20 ){
   led_on();
-  
+  relay_on();
   }
 else{
     led_off();
+    relay_off();
     }
 Serial.println("Going to sleep now");
 lcd.noBacklight();
@@ -124,11 +126,21 @@ return (soundSpeed * echoTime)/2 ;
 }
 //function for led
 void led_on(){
+  
   digitalWrite (ledPin, HIGH);
   }
   void led_off(){
   digitalWrite (ledPin, LOW);
+  digitalWrite(relay, HIGH);
   }
+  void relay_on(){
+    digitalWrite(relay, LOW);
+    
+    }
+     void relay_off(){
+    digitalWrite(relay, HIGH);
+    
+    }
 
   //function for inserting into database
 void database(String y){
