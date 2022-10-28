@@ -16,7 +16,7 @@
 
     <h1 style="color: rgb(14, 67, 62);">Monitoring Storage Tank Level</h1>
   <h1 text-align= "center"> </h1>
-  <p style="font-size: 120%;">This page shows the storage tanks in Ella and Manuel's Houses. 
+  <p style="font-size: 120%;">This page shows the storage tanks in Ella and Ella Fosu's Houses. 
     Click any of the tanks to display last 5 water levels.</p>
 
 
@@ -25,24 +25,24 @@
 
   <body>
 
-
+    <!-- <button type="button" onclick="updateByAJAX_tankdbData()">Tank1</button> -->
+ 
 
 <button class="button-1" role="button" name = "Tank" onclick= "updateByAJAX_tankdbData()"> Tank 1</button>
-<div id=tankdbData ></div>
-
-<button class="button-2" role="button" name = "Tank" onclick= "updateByAJAX_tankdbData()">Tank 2</button>
-<div id=tankdbData ></div>
+<div id="tankdbData" ></div>
 
 
 <br>
 <br>
-<!--
-<button class="button-3" role="button" name="level2" onclick="updateByAJAX_level2()">level2</button>
-<div id="level2"></div>
+ 
 
-<button class="button-1" role="button" name="level2" onclick="updateByAJAX_CurrT2()">Click to show tank 2 current water level</button>
-<div id="CurrT2"></div>
--->
+<button class="button-2" role="button" name = "Tank" onclick= "updateByAJAX_level2()">Tank 2</button>
+<div id="level2" ></div> 
+
+
+<br>
+<br>
+
 
 <script type="text/javascript">
 
@@ -52,7 +52,7 @@ function updateByAJAX_tankdbData(){
         document.getElementById("tankdbData").innerText=this.responseText;
       }
       
-      xhttp.open("GET", "http://localhost/IOTLab5/Retrievinglevel.php?");
+      xhttp.open("GET", "http://localhost/IOTLab5/Retrievinglevel1.php?");
       xhttp.send();
     }
 
@@ -60,7 +60,7 @@ function updateByAJAX_tankdbData(){
 
 
 
-//wei
+// Ei Dr Nathan
 
 
 <script type="text/javascript">
@@ -75,25 +75,7 @@ function updateByAJAX_tankdbData(){
           xhttp.send();
         }
     
-    function updateByAJAX_Current(){
-          const xhttp=new XMLHttpRequest();
-          xhttp.onload=function(){
-            document.getElementById("Current").innerText=this.responseText;
-          }
-          
-          xhttp.open("GET", "http://localhost/IOTLab5/getlastTank1.php?");
-          xhttp.send();
-    }
-    
-    function updateByAJAX_CurrT2(){
-          const xhttp=new XMLHttpRequest();
-          xhttp.onload=function(){
-            document.getElementById("CurrT2").innerText=this.responseText;
-          }
-          
-          xhttp.open("GET", "http://localhost/IOTLab5/getlastTank2.php?");
-          xhttp.send();
-    }
+  
     
     function updateByAJAX_level2(){
         const xhttp=new XMLHttpRequest();
@@ -105,46 +87,7 @@ function updateByAJAX_tankdbData(){
           xhttp.send();
         }
     
-    
-    
-        function sendData(butn)
-    {
-      var URL, variab, text;
-      if(butn == 'Red LED')
-      {
-        URL = 'LEDRurl';
-        variab = 'LEDR';
-      }
-    
-      if(butn == 'manual')
-    {
-     URL = 'manualurl';
-      variab = 'manualState';
-        
-     }
-    
-    
-      if(butn == 'Red LED')
 
-
-    { // change button class and text 
-      var state = document.getElementById(butn).className;
-      state = (state == 'btn on' ? 'btn off' : 'btn on');
-      text = (state == 'btn on' ? butn + 'OFF' : butn + ' ON');
-        document.getElementById(butn).className = state;
-        document.getElementById(butn).innerHTML = 'Press to turn ' + text;
-      }
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function(butn)
-      {
-        if (this.readyState == 4 && this.status == 200)
-    
-    //   xhr.onload = function(){
-        document.getElementById(variab).innerHTML = this.responseText;
-      };
-      xhr.open('GET', URL, true);
-      xhr.send();
-    }
     
     </script>
 

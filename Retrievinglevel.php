@@ -21,4 +21,3 @@ $dbname = "iotproject";
    } 
    
 ?>
-//asdf
