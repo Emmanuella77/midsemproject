@@ -1,7 +1,6 @@
 // I have made some changes
 
 #include <Arduino.h>
-#include "DHT.h"
 
 #include <WiFi.h>
 #include <WiFiMulti.h>
